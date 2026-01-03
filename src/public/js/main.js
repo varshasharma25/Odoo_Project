@@ -1,15 +1,19 @@
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+// src/public/js/main.js - Universal Dayflow HRMS Frontend
+const API_BASE = '/api';
 
-  const res = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
-  });
+// Global state
+let currentUser = null;
 
-  const data = await res.json();
-  document.getElementById('result').innerHTML = 
-    `<p>${data.message} | Role: ${data.role}</p>`;
-});
+document.addEventListener('DOMContentLoaded', initPage);
+
+async function initPage() {
+  // Check if logged in on every page
+  try {
+    const res = await fetch(`${API_BASE}/dashboard`);
+    if (res.ok) {
+      currentUser = await res.json();
+      showDashboard(currentUser);
+    } else {
+      // Not logged in, redirect to login
+      if (window.location.pathname !== '/login.html') {
+        window.location.href

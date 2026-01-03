@@ -1,24 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dayflow | Leave</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <script defer src="js/app.js"></script>
 </head>
-<body>
-    <form id="leaveForm">
-  <select name="type">Paid/Sick/Unpaid</select>
-  <input name="startDate" type="date">
-  <input name="endDate" type="date">
-  <textarea name="remarks"></textarea>
-  <button>Apply Leave</button>
-</form>
 
-<section class="my-leaves">
-  <table>
-    <thead>Date | Type | Status</thead>
-  </table>
-</section>
+<body data-page="leave">
+  <header class="topbar">
+    <div class="brand">
+      <a class="brand__logo" href="/dashboard.html">Dayflow</a>
+      <span class="pill" id="rolePill">Role: —</span>
+    </div>
+    <nav class="topbar__nav">
+      <a href="/dashboard.html" class="navlink">Dashboard</a>
+      <a href="/attendance.html" class="navlink">Attendance</a>
+      <a href="/leave.html" class="navlink navlink--active">Leave</a>
+      <a href="/profile.html" class="navlink">Profile</a>
+      <button class="btn btn--ghost" id="btnLogout" type="button">Logout</button>
+    </nav>
+  </header>
 
+  <main class="container">
+    <section class="page-head">
+      <h1>Leave & Time-off</h1>
+      <p class="muted">Apply leave (API wiring can be added after attendance).</p>
+    </section>
+
+    <section class="grid grid--2">
+      <article class="card">
+        <h2>Apply for leave</h2>
+        <form id="leaveForm" class="form">
+          <div class="form__row">
+            <label for="leaveType">Leave type</label>
+            <select id="leaveType" name="type">
+              <option value="paid">Paid</option>
+              <option value="sick">Sick</option>
+              <option value="unpaid">Unpaid</option>
+            </select>
+          </div>
+
+          <div class="grid grid--2">
+            <div class="form__row">
+              <label for="leaveStart">Start date</label>
+              <input id="leaveStart" type="date" required />
+            </div>
+
+            <div class="form__row">
+              <label for="leaveEnd">End date</label>
+              <input id="leaveEnd" type="date" required />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <label for="leaveRemarks">Remarks</label>
+            <textarea id="leaveRemarks" rows="4" placeholder="Optional notes..."></textarea>
+          </div>
+
+          <button class="btn btn--primary" type="submit">Submit request</button>
+          <div id="leaveMsg" class="message" role="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>My requests</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Dates</th>
+                <th>Type</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="myLeavesTbody">
+              <tr><td colspan="3" class="muted">Not wired yet (will connect to /api/leaves/my).</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small class="muted">Dayflow HRMS Prototype</small>
+  </footer>
 </body>
 </html>

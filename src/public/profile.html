@@ -1,29 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dayflow | Profile</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <script defer src="js/app.js"></script>
 </head>
-<body>
-    <section class="personal-info">
-  <h2>Personal Details</h2>
-  <input name="name" readonly>
-  <input name="employeeId" readonly>
-  <input name="phone">
-  <input name="address">
-</section>
 
-<section class="job-info">
-  <h2>Job Details</h2>
-  <input name="department">
-  <input name="salary" readonly>
-</section>
+<body data-page="profile">
+  <header class="topbar">
+    <div class="brand">
+      <a class="brand__logo" href="/dashboard.html">Dayflow</a>
+      <span class="pill" id="rolePill">Role: —</span>
+    </div>
+    <nav class="topbar__nav">
+      <a href="/dashboard.html" class="navlink">Dashboard</a>
+      <a href="/profile.html" class="navlink navlink--active">Profile</a>
+      <a href="/attendance.html" class="navlink">Attendance</a>
+      <a href="/leave.html" class="navlink">Leave</a>
+      <button class="btn btn--ghost" id="btnLogout" type="button">Logout</button>
+    </nav>
+  </header>
 
-<section class="documents">
-  <h2>Documents</h2>
-  <ul id="docList"><!-- PDF links --></ul>
-</section>
+  <main class="container">
+    <section class="page-head">
+      <h1>My profile</h1>
+      <p class="muted">Employee can edit limited fields; admin can edit all (wire later).</p>
+    </section>
 
+    <section class="grid grid--2">
+      <article class="card">
+        <h2>Personal details</h2>
+        <form id="profileForm" class="form">
+          <div class="form__row">
+            <label for="pfName">Full name</label>
+            <input id="pfName" type="text" placeholder="John Doe" />
+          </div>
+
+          <div class="form__row">
+            <label for="pfPhone">Phone</label>
+            <input id="pfPhone" type="tel" placeholder="98765xxxxx" />
+          </div>
+
+          <div class="form__row">
+            <label for="pfAddress">Address</label>
+            <textarea id="pfAddress" rows="3" placeholder="City, State"></textarea>
+          </div>
+
+          <button class="btn btn--primary" type="submit">Save</button>
+          <div id="profileMsg" class="message" role="status" aria-live="polite"></div>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>Job & payroll (read-only)</h2>
+        <dl class="kv">
+          <div class="kv__row">
+            <dt>Employee ID</dt>
+            <dd id="pfEmpId">—</dd>
+          </div>
+          <div class="kv__row">
+            <dt>Role</dt>
+            <dd id="pfRole">—</dd>
+          </div>
+          <div class="kv__row">
+            <dt>Salary</dt>
+            <dd id="pfSalary">—</dd>
+          </div>
+        </dl>
+
+        <hr class="divider" />
+
+        <h3>Documents</h3>
+        <ul class="list" id="pfDocs">
+          <li class="muted">Upload/view documents (future enhancement).</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small class="muted">Dayflow HRMS Prototype</small>
+  </footer>
 </body>
 </html>

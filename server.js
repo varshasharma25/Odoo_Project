@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
+const session = require('express-session');
 const connectDB = require('./src/config/db');
 
 dotenv.config();
@@ -13,31 +14,30 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'src', 'public')));
-
-// Auth
-app.use('/api/auth', require('./src/routes/auth.routes'));
-
-// Employees
-//app.use('/api/employees', require('./src/routes/employee.routes'));
-
-// Admin
-//app.use('/api/admin', require('./src/routes/admin.routes'));
-
-const session = require('express-session');
+// Session must be BEFORE routes that use req.session
 app.use(session({
   secret: 'dayflow-secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // true in production
+  cookie: { secure: false }
 }));
 
-app.use('/api/dashboard', require('./src/routes/dashboard.routes'));
+// (Optional) log session for every request
 app.use((req, res, next) => {
   console.log('Session:', req.session);
   next();
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
-});
+// Routes
+app.use('/api/auth', require('./src/routes/auth.routes'));
+app.use('/api/employees', require('./src/routes/employee.routes'));
+app.use('/api/admin', require('./src/routes/admin.routes'));
+app.use('/api/dashboard', require('./src/routes/dashboard.routes'));
+app.use('/api/attendance', require('./src/routes/attendance.routes'));
+
+
+
+// Static files
+app.use(express.static(path.join(__dirname, 'src', 'public')));
+
+app.listen(PORT, () => console.log(`Server started on http://localhost:${PORT}`));

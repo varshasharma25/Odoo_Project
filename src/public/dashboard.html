@@ -1,40 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dayflow | Dashboard</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <script defer src="js/app.js"></script>
 </head>
-<body>
-    <header> Dayflow HRMS | [User Name] | Logout </header>
 
-<main id="employeeDash">
-  <section class="quick-stats">
-    <div>Today's Status: Present</div>
-    <div>Leave Balance: 12 days</div>
-    <div>Salary Next: Jan 15</div>
-  </section>
-  <section class="cards">
-    <div class="card profile">My Profile</div>
-    <div class="card attendance">Attendance Calendar</div>
-    <div class="card leave">Apply Leave</div>
-  </section>
-</main>
+<body data-page="dashboard">
+  <header class="topbar">
+    <div class="brand">
+      <a class="brand__logo" href="/dashboard.html">Dayflow</a>
+      <span class="pill" id="rolePill">Role: —</span>
+    </div>
 
-<main id="adminDash" style="display:none">
-  <section class="stats">
-    <div>Pending Leaves: 3</div>
-    <div>Total Employees: 25</div>
-  </section>
-  <section class="tables">
-    <table class="leaves-table">
-      <thead>Employee | Type | Dates | Action</thead>
-    </table>
-    <table class="employees-table">
-      <thead>ID | Name | Department | Salary</thead>
-    </table>
-  </section>
-</main>
+    <nav class="topbar__nav">
+      <a href="/dashboard.html" class="navlink">Dashboard</a>
+      <a href="/profile.html" class="navlink">Profile</a>
+      <a href="/attendance.html" class="navlink">Attendance</a>
+      <a href="/leave.html" class="navlink">Leave</a>
+      <button class="btn btn--ghost" id="btnLogout" type="button">Logout</button>
+    </nav>
+  </header>
 
+  <main class="container">
+    <section class="page-head">
+      <h1 id="dashTitle">Dashboard</h1>
+      <p class="muted" id="dashSubtitle">Loading...</p>
+    </section>
+
+    <!-- EMPLOYEE DASHBOARD -->
+    <section id="employeePanel" class="panel" hidden>
+      <h2>Employee quick actions</h2>
+
+      <div class="grid grid--3">
+        <article class="card">
+          <h3>Today’s status</h3>
+          <p id="empTodayStatus" class="big">—</p>
+          <p class="muted">Based on check-in/out.</p>
+        </article>
+
+        <article class="card">
+          <h3>Next payroll</h3>
+          <p id="empSalaryNext" class="big">—</p>
+          <p class="muted">Read-only salary visibility.</p>
+        </article>
+
+        <article class="card">
+          <h3>Shortcuts</h3>
+          <div class="stack">
+            <a class="btn btn--secondary" href="/attendance.html">Open attendance</a>
+            <a class="btn btn--secondary" href="/leave.html">Apply leave</a>
+            <a class="btn btn--secondary" href="/profile.html">View profile</a>
+          </div>
+        </article>
+      </div>
+
+      <section class="panel__section">
+        <h2>Recent activity</h2>
+        <ul class="list" id="empAlerts">
+          <li class="muted">No activity loaded yet.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ADMIN / HR DASHBOARD -->
+    <section id="adminPanel" class="panel" hidden>
+      <h2>HR overview</h2>
+
+      <div class="grid grid--3">
+        <article class="card">
+          <h3>Employees</h3>
+          <p id="admEmployees" class="big">—</p>
+          <p class="muted">Total employees (demo number).</p>
+        </article>
+
+        <article class="card">
+          <h3>Pending leaves</h3>
+          <p id="admPendingLeaves" class="big">—</p>
+          <p class="muted">Approve/reject in Admin Leave page.</p>
+        </article>
+
+        <article class="card">
+          <h3>Shortcuts</h3>
+          <div class="stack">
+            <a class="btn btn--secondary" href="/admin.leave.html">Open leave approvals</a>
+            <a class="btn btn--secondary" href="/attendance.html">Attendance view</a>
+            <a class="btn btn--secondary" href="/profile.html">Employee profile</a>
+          </div>
+        </article>
+      </div>
+
+      <section class="panel__section">
+        <h2>Admin actions</h2>
+        <div class="grid grid--2">
+          <article class="card">
+            <h3>Employee lookup (demo)</h3>
+            <form id="adminLookupForm" class="form form--inline">
+              <input id="lookupEmployeeId" type="text" placeholder="Employee ID (EMP001)" />
+              <button class="btn btn--primary" type="submit">Fetch attendance</button>
+            </form>
+            <pre class="codebox" id="adminLookupResult">—</pre>
+          </article>
+
+          <article class="card">
+            <h3>Approval queue</h3>
+            <p class="muted">Leave approvals are on <a href="/admin.leave.html">admin.leave.html</a>.</p>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel" id="dashError" hidden>
+      <h2>Access error</h2>
+      <p class="muted" id="dashErrorMsg">—</p>
+      <a class="btn btn--primary" href="/login.html">Go to login</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small class="muted">Dayflow HRMS Prototype</small>
+  </footer>
 </body>
 </html>

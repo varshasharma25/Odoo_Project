@@ -1,6 +1,63 @@
-<section class="pending-leaves">
-  <table id="pendingTable">
-    <thead>Employee | Type | Dates | Action</thead>
-    <td><button>Approve</button><button>Reject</button></td>
-  </table>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dayflow | Leave Approvals</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <script defer src="js/app.js"></script>
+</head>
+
+<body data-page="admin-leave">
+  <header class="topbar">
+    <div class="brand">
+      <a class="brand__logo" href="/dashboard.html">Dayflow</a>
+      <span class="pill" id="rolePill">Role: —</span>
+    </div>
+    <nav class="topbar__nav">
+      <a href="/dashboard.html" class="navlink">Dashboard</a>
+      <a href="/admin.leave.html" class="navlink navlink--active">Approvals</a>
+      <a href="/attendance.html" class="navlink">Attendance</a>
+      <button class="btn btn--ghost" id="btnLogout" type="button">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>Leave approvals (Admin/HR)</h1>
+      <p class="muted">Approve / reject leave requests (wire after leave APIs).</p>
+    </section>
+
+    <section class="panel">
+      <h2>Pending requests</h2>
+
+      <div class="table-wrap">
+        <table class="table" id="pendingLeavesTable">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Type</th>
+              <th>Dates</th>
+              <th>Remarks</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="pendingLeavesTbody">
+            <tr>
+              <td colspan="5" class="muted">
+                Not wired yet (will connect to /api/admin/leaves/pending).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="adminLeaveMsg" class="message" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small class="muted">Dayflow HRMS Prototype</small>
+  </footer>
+</body>
+</html>
