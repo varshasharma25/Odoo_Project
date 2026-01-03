@@ -24,10 +24,7 @@
 - Employee ID + Email login
 - Session-based authentication
 
-## 📱 Live Demo
-http://localhost:3000
 
-text
 
 ## 🛠️ Tech Stack
 Frontend: HTML5, Vanilla JavaScript, CSS3
