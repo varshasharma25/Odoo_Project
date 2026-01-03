@@ -3,21 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dayflow HRMS</title>
+  <title>Dayflow HRMS - Modern Employee Management</title>
   <link rel="stylesheet" href="css/app.css">
+  <style>
+    /* Modern HRMS Landing Page */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #333; }
+    .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 20px; text-align: center; }
+    .hero h1 { font-size: 3.5em; font-weight: 700; margin-bottom: 20px; }
+    .hero p { font-size: 1.3em; max-width: 600px; margin: 0 auto 40px; }
+    .cta-btn { display: inline-block; background: white; color: #667eea; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1em; transition: all 0.3s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .features { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+    .features h2 { text-align: center; font-size: 2.5em; margin-bottom: 60px; color: #2c3e50; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+    .feature-card { text-align: center; padding: 40px 20px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .feature-card:hover { transform: translateY(-10px); }
+    .feature-icon { font-size: 3em; margin-bottom: 20px; }
+    .features .btn-secondary { background: #f8f9fa; color: #667eea; margin-top: 20px; padding: 12px 30px; border-radius: 25px; text-decoration: none; display: inline-block; }
+    footer { background: #2c3e50; color: white; text-align: center; padding: 40px 20px; }
+  </style>
 </head>
-<body data-page="login"> <!-- ← ADD THIS -->
-  <div class="container">
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
     <h1>Dayflow HRMS</h1>
-    
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
+    <p>Streamline employee management, attendance tracking, and HR workflows with our modern, intuitive platform.</p>
+    <a href="/login.html" class="cta-btn">Get Started</a>
+  </section>
 
-    <div id="result"></div>
-  </div>
-  <script defer src="js/app.js"></script> <!-- ← defer + close properly -->
+  <!-- Features -->
+  <section class="features">
+    <h2>Everything You Need for Modern HR</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Employee Management</h3>
+        <p>Complete employee profiles, roles (Employee/HR), onboarding, and permissions in one place.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <h3>Smart Attendance</h3>
+        <p>Real-time check-in/out, automated reports, and compliance tracking.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>HR Analytics</h3>
+        <p>Role-based dashboards with attendance stats, pending requests, and team insights.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure & Compliant</h3>
+        <p>Email verification, strong password rules, and role-based access control.</p>
+      </div>
+    </div>
+  </section>
+       <script defer src="/js/app.js"></script>
+
+  <footer>
+    <p>&copy; 2026 Dayflow HRMS. Built for modern teams. <a href="/register.html" style="color: #667eea;">New? Register here</a></p>
+  </footer>
 </body>
 </html>

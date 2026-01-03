@@ -30,11 +30,9 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/auth', require('./src/routes/auth.routes'));
-app.use('/api/employees', require('./src/routes/employee.routes'));
 app.use('/api/admin', require('./src/routes/admin.routes'));
 app.use('/api/dashboard', require('./src/routes/dashboard.routes'));
 app.use('/api/attendance', require('./src/routes/attendance.routes'));
-
 
 
 // Static files

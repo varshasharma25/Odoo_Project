@@ -34,6 +34,11 @@
 
         <div class="form__actions">
           <button type="submit" class="btn btn--primary" id="btnLogin">Login</button>
+          <!-- Add this under the login button area -->
+<p class="muted">
+  New here? <a href="/register.html">Create account</a>
+</p>
+
           <a href="#" class="link" aria-disabled="true">Forgot password?</a>
         </div>
 
@@ -42,18 +47,17 @@
 
       <hr class="divider" />
 
-      <details class="dev-only">
-        <summary>Demo credentials (for judges)</summary>
-        <ul>
-          <li>Employee: emp@dayflow.com / 123456</li>
-          <li>Admin: hr@dayflow.com / 123456</li>
-        </ul>
-      </details>
+      
     </section>
   </main>
 
   <footer class="footer">
     <small class="muted">Dayflow HRMS Prototype</small>
   </footer>
+  <script defer src="/js/app.js"></script> <!-- NO defer for now -->
+  
+  <!-- Debug button -->
+  <button onclick="console.log('🧪 Click works!')">Debug Click</button>
+
 </body>
 </html>

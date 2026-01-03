@@ -4,11 +4,18 @@ const attendanceSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    index: true
+  },
+  employeeId: {
+    type: String,
+    required: true,
+    index: true
   },
   date: {
     type: Date,
-    required: true
+    required: true,
+    index: true
   },
   checkIn: {
     type: Date
@@ -16,16 +23,22 @@ const attendanceSchema = new mongoose.Schema({
   checkOut: {
     type: Date
   },
+  hoursWorked: {
+    type: Number,
+    default: 0
+  },
   status: {
     type: String,
-    enum: ['present', 'absent', 'half-day', 'leave'],
-    default: 'absent'
-  }
+    enum: ['Present', 'Absent', 'Late', 'Half-Day', 'Holiday'],
+    default: 'Absent'
+  },
+  notes: String // HR notes
 }, {
   timestamps: true
 });
 
 // Index for fast queries
-attendanceSchema.index({ userId: 1, date: -1 });
+attendanceSchema.index({ userId: 1, date: 1 });
+attendanceSchema.index({ date: 1, status: 1 });
 
 module.exports = mongoose.model('Attendance', attendanceSchema);

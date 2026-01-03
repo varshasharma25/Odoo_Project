@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HR Dashboard</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body data-page="admin">
+  <h1>HR Dashboard</h1>
+  
+  <div id="employeesList"></div>
+  <div id="attendanceTable"></div>
+  
+  <form id="markAttendance">
+    <select id="empSelect"></select>
+    <input type="date" id="attDate">
+    <select id="attStatus">
+      <option>Present</option><option>Absent</option><option>Late</option>
+    </select>
+    <input type="number" id="hours" placeholder="Hours">
+    <button>Mark Attendance</button>
+  </form>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
